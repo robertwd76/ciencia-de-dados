@@ -1,17 +1,17 @@
 import { getCSS, tickConfig } from "./common.js"
 
-async function quantidadeUsuarios() {
-    const url = 'https://raw.githubusercontent.com/guilhermeonrails/api/main/numero-usuarios.json'
+async function quantidadeAtletas() {
+    const url = 'https://raw.githubusercontent.com/silviosnjr/CienciaDeDados-CriandoGraficosDinamicosComJavaScript/refs/heads/Aula01/esportes/esportes-mais-praticados.json'
     const rest = await fetch(url)
     const dados = await rest.json()
 
-    const nomeDasRedes = Object.keys(dados)
-    const quantidadeUsuarios= Object.values(dados)
+    const nomeDasModalidades = Object.keys(dados)
+    const quantidadeJogadores= Object.values(dados)
 
     const data = [
         {
-            x: nomeDasRedes,
-            y: quantidadeUsuarios,
+            x: nomeDasModalidades,
+            y: quantidadeJogadores,
             type: 'bar',
             marker: {
                 color: getCSS('--primary-color')
@@ -23,7 +23,7 @@ async function quantidadeUsuarios() {
         plot_bgcolor: getCSS('--bg-color'),
         paper_bgcolor: getCSS('--bg-color'),
         title: {
-            text: "Redes sociais com mais usuários no mundo",
+            text: "Quantidade de atletas praticando esportes",
             x: 0,
             font: {
                 color: getCSS('--primary-color'),
@@ -34,7 +34,7 @@ async function quantidadeUsuarios() {
         xaxis: {
             tickfont: tickConfig,
             title: {
-                text: "Nome das redes sociais",
+                text: "Nome das modalidades",
                 font: {
                     color: getCSS('--secundary-color')
                 }
@@ -43,7 +43,7 @@ async function quantidadeUsuarios() {
         yaxis: {
             tickfont: tickConfig,
             title: {
-                text: "Bilhoes de usuários ativos",
+                text: "Bilhoes de atletas praticando esporte",
                 font: {
                     color: getCSS('--secundary-color')
                 }
@@ -56,5 +56,5 @@ async function quantidadeUsuarios() {
     document.getElementById('graficos-container').appendChild(grafico)
     Plotly.newPlot(grafico, data, layout)
 }
- 
-quantidadeUsuarios()
+
+quantidadeAtletas()
